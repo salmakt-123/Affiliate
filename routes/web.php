@@ -25,10 +25,7 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('dashboard', [DashboardController::class, 'index']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth']], function() {
-    // Route::get('roles/{id}', 'RoleController@manage');
     Route::get('roles/{id?}', [RoleController::class, 'index'])->name('roles.index');
     Route::post('manage', [RoleController::class, 'manage'])->name('roles.manage');
-    Route::resource('users', UserController::class);
     Route::get('affiliate', [DashboardController::class, 'affiliate'])->name('affiliate'); 
-    // Route::resource('products', ProductController::class);
 });
